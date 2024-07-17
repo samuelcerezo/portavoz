@@ -10,9 +10,10 @@ Tema en blanco de WordPress para Portavoz.
 - Las tipografías dentro del directorio _fonts_ se cargarán automáticamente.
 - Deben estar ubicadas en directorios con el nombre de la familia y los distintos grosores en ficheros separados con el grosor como nombre, seguido de una _i_ si es cursiva. Por ejemplo: _Open Sans/400.woff2_, _Open Sans/400i.woff2_. Solo se cargarán los archivos woff2, para un mejor WPO.
 
-### URLs generadas automáticamente a partir de la ID
-- {{id-XXX}} siendo XXX la ID del tipo de objeto, reemplazará automáticamente la cadena de texto por la url. Si se trata de un adjunto, mostrará el enlace al fichero.
-- {{YYY-XXX}} siendo YYY la taxonomía y XXX la ID del término de la taxonomía, reemplazará automáticamente la cadena de texto por la url al término de la taxonomía.
+### Etiquetas dinámicas
+- La etiqueta {{id-XXX}} siendo XXX la ID del tipo de objeto, reemplazará automáticamente la cadena de texto por la url. Si se trata de un adjunto, mostrará el enlace al fichero.
+- La etiqueta {{YYY-XXX}} siendo YYY la taxonomía y XXX la ID del término de la taxonomía, reemplazará automáticamente la cadena de texto por la url al término de la taxonomía.
+- La etiqueta {{year}} mostrará automáticamente el año actual.
 
 ### Soporte extendido
 - Soporte SASS (https://scssphp.github.io/scssphp). El archivo _main.scss_ se procesa automáticamente a CSS y se carga en el frontend. El archivo _admin.scss_ se procesa automáticamente a CSS y se carga en el backend.
