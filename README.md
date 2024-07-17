@@ -23,6 +23,7 @@ Tema en blanco de WordPress para Portavoz.
 - Al enviar un formulario, permite enviar los datos a una Datakey de Salesforce Marketing Cloud.
 - Validación extendida de formularios al enviar, con soporte multiidioma (Inglés, Francés, Alemán, Italiano y Portugués).
 - Validación extendida de formularios gracias a InputMask (https://github.com/RobinHerbots/Inputmask).
+- Etiquetas dinámicas. Carga de valores en campos de texto e imágenes de la taxonomía a la que pertenezca el objeto.
 
 ### Carga automática de funciones PHP
 - Todos los archivos PHP dentro del directorio _functions_ se cargarán automáticamente, estando disponibles las funciones en ellos contenidas.
@@ -30,3 +31,5 @@ Tema en blanco de WordPress para Portavoz.
 ### Otras mejoras
 - Eliminación automática de archivos innecesarios, como _readme.html_, _wp-config-sample.php_ o _license.txt_.
 - Notificaciones de actualizaciones automáticas de plugins y temas deshabilitadas.
+- Soporte para Polylang (_functions/functions.polylang.php_).
+- Deshabilitación de comentarios por defecto (_functions/functions.comments.php_).
