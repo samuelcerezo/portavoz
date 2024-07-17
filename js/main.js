@@ -8,29 +8,6 @@ jQuery(function($) {
 		$('#cmplz-manage-consent button').click();
 	});
 	$('#primary, .elementor-location-single, .elementor-location-archive').css('padding-top', $('.elementor-location-header').outerHeight());
-	$('.spaces-wrapper .item').on('click', function(e) {
-		var t = $(this),
-			p = t.closest('.item');
-		if (!$(e.target).is('a')) {
-			p.siblings('.item').removeClass('active');
-			p.toggleClass('active');
-		}
-	});
-	$('.spaces-wrapper .filters span').on('click', function() {
-		var t = $(this),
-			v = t.attr('data');
-		t.siblings().removeClass('active');
-		t.addClass('active');
-		$('.spaces-wrapper .item').each(function() {
-			var e = $(this);
-			if (v == 'all' || e.is('[data-type*="'+v+'"]')) {
-				e.show();
-			} else {
-				e.hide();
-			}
-		});
-	});
-	$('.spaces-wrapper .filters span[data="all"]').trigger('click');
 	$('form button[type="submit"]').on('click', function(e) {
 		var t = $(this),
 			f = t.closest('form'),
