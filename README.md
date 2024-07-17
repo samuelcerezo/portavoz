@@ -1,4 +1,4 @@
-# portavoz
+# Portavoz
 Tema en blanco de WordPress para Portavoz.
 
 ### Mejoras de seguridad
@@ -15,12 +15,14 @@ Tema en blanco de WordPress para Portavoz.
 - {{YYY-XXX}} siendo YYY la taxonomía y XXX la ID del término de la taxonomía, reemplazará automáticamente la cadena de texto por la url al término de la taxonomía.
 
 ### Soporte extendido
-- Soporte SASS. El archivo _main.scss_ se procesa automáticamente a CSS y se carga en el frontend. El archivo _admin.scss_ se procesa automáticamente a CSS y se carga en el backend.
-- Soporte SVG.
+- Soporte SASS (https://scssphp.github.io/scssphp). El archivo _main.scss_ se procesa automáticamente a CSS y se carga en el frontend. El archivo _admin.scss_ se procesa automáticamente a CSS y se carga en el backend.
+- Soporte nativo de archivos SVG.
 
 ### Integración con Elementor
 - Al enviar un formulario, permite enviar los datos a una url mediante POST o GET.
 - Al enviar un formulario, permite enviar los datos a una Datakey de Salesforce Marketing Cloud.
+- Validación extendida de formularios al enviar, con soporte multiidioma (Inglés, Francés, Alemán, Italiano y Portugués).
+- Validación extendida de formularios gracias a InputMask (https://github.com/RobinHerbots/Inputmask).
 
 ### Carga automática de funciones PHP
 - Todos los archivos PHP dentro del directorio _functions_ se cargarán automáticamente, estando disponibles las funciones en ellos contenidas.
