@@ -1,0 +1,28 @@
+@charset 'UTF-8';
+
+body {
+	/* Reseteo de estilos */
+	.elementor-widget-html {
+		line-height: 0;
+		font-size: 0;
+	}
+	.elementor-widget-text-editor {
+		p {
+			&:last-child {
+				margin: 0;
+			}
+		}
+	}
+	/* Cabecera de página */
+	.elementor-location-header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 50;
+		width: 100%;
+	}
+	/* Cuerpo principal */
+	#primary {
+		overflow: hidden;
+	}
+}
