@@ -26,6 +26,9 @@ Tema en blanco de WordPress para Portavoz.
 - Validación extendida de formularios gracias a InputMask (https://github.com/RobinHerbots/Inputmask).
 - Etiquetas dinámicas. Carga de valores en campos de texto e imágenes de la taxonomía a la que pertenezca el objeto.
 
+### Integración con Mapbox
+- Widget de Elementor para insertar fácilmente mapas de Mapbox
+
 ### Carga automática de funciones PHP
 - Todos los archivos PHP dentro del directorio _functions_ se cargarán automáticamente, estando disponibles las funciones en ellos contenidas.
 
