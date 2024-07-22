@@ -49,7 +49,7 @@ add_action('admin_init', function() {
 		$content = array(
 			'# CPS Security headers rules',
 			'<IfModule mod_headers.c>',
-			'Header set Content-Security-Policy "default-src \'none\'; script-src \'self\' \'unsafe-inline\' \'unsafe-eval\' '.trim(site_url(), '/').' https://www.googletagmanager.com https://www.google.com https://www.gstatic.com https://cdnjs.cloudflare.com; connect-src \'self\' \'unsafe-inline\'  https://*.google-analytics.com https://*.mapbox.com; img-src \'self\' data: blob: https://secure.gravatar.com https://*.w.org https://library.elementor.com; style-src \'self\' \'unsafe-inline\' https://fonts.googleapis.com; worker-src \'self\' \'unsafe-inline\' blob:; font-src \'self\' data: https://fonts.gstatic.com; media-src \'self\' '.trim(site_url(), '/').'; frame-src \'self\' https://www.google.com https://www.youtube.com;"',
+			'Header set Content-Security-Policy "default-src \'none\'; script-src \'self\' \'unsafe-inline\' \'unsafe-eval\' '.trim(site_url(), '/').' https://www.googletagmanager.com https://www.google.com https://www.gstatic.com https://cdnjs.cloudflare.com https://widget.intercom.io/widget; connect-src \'self\' \'unsafe-inline\'  https://*.google-analytics.com https://*.mapbox.com; img-src \'self\' data: blob: https://secure.gravatar.com https://*.w.org https://library.elementor.com https://*.gtranslate.net/flags; style-src \'self\' \'unsafe-inline\' https://fonts.googleapis.com; worker-src \'self\' \'unsafe-inline\' blob:; font-src \'self\' data: https://fonts.gstatic.com; media-src \'self\' '.trim(site_url(), '/').'; frame-src \'self\' https://www.google.com https://www.youtube.com;"',
 			'</IfModule>',
 			'# End of CPS Security headers rules'
 		);
