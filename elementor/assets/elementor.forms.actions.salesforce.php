@@ -71,16 +71,6 @@ class Salesforce_Action_After_Submit extends \ElementorPro\Modules\Forms\Classes
 			)
 		);
 
-		$widget->add_control(
-			'salesforce_mapping', array(
-				'label' => esc_html__('Map fields', 'portavoz'),
-				'type' => \Elementor\Controls_Manager::SELECT2,
-				'options' => '',
-			)
-		);
-
-		//https://stackoverflow.com/questions/71691766/populate-select2-field-with-another-select2-field-in-elementor
-
 		$widget->end_controls_section();
 
 	}
@@ -111,26 +101,74 @@ class Salesforce_Action_After_Submit extends \ElementorPro\Modules\Forms\Classes
 		
 		$raw_fields = $record->get('fields');
 
-		// Normalize form data.
-		$fields = [];
-		foreach ($raw_fields as $id => $field) {
-			$fields[ $id ] = $field['value'];
+		$salesforce = [];
+
+		foreach ($settings['form_fields'] as $field) {
+
+			if (isset($field['salesforce_migrate']) && $field['salesforce_migrate'] == 'yes') {
+
+				$salesforce[$field['custom_id']] = $field['salesforce_key'];
+
+			}
+		
 		}
 
-		// Make sure the user entered an email (required by Sendy to subscribe users).
+		$data = [];
+		
+		foreach ($raw_fields as $id => $field) {
 
+			if (isset($salesforce[$id])) {
 
+				if (in_array($field['type'], ['acceptance'])) {
 
+					if ($field['value'] == 'on') {
+					
+						$data[$salesforce[$id]] = 'true';
+					
+					} else {
+
+						$data[$salesforce[$id]] = 'false';
+
+					}
+
+				} else {
+
+					$data[$salesforce[$id]] = $field['value'];
+
+				}
+
+			}
+
+		}
+
+		$token = salesforce_token($settings['salesforce_prefix'], $settings['salesforce_clientid'], $settings['salesforce_clientsecret']);
+
+		if ($token) {
+
+			$result = salesforce_save($settings['salesforce_prefix'], $data, $settings['salesforce_table'], $token);
+
+			$test = salesforce_check($settings['salesforce_prefix'], $result, $token);
+
+		} else {
+
+			$msg = 'Error conectando con Salesforce';
+
+			$handler->add_error(0, $msg);
+			$handler->add_error_message($msg);
+			
+			$handler->is_success = false;
+
+		}
 
 	}
 
 	public function on_export($element) {
 
 		unset(
-			$element['sendy_url'],
-			$element['sendy_list'],
-			$element['sendy_email_field'],
-			$element['sendy_name_field']
+			$element['salesforce_prefix'],
+			$element['salesforce_clientid'],
+			$element['salesforce_clientsecret'],
+			$element['salesforce_table']
 		);
 
 		return $element;
