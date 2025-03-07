@@ -58,8 +58,9 @@ add_action('admin_init', function() {
 			'</IfModule>',
 			'# CPS Security headers rules',
 			'<IfModule mod_headers.c>',
-			'Header set Content-Security-Policy "default-src \'none\'; script-src \'self\' \'unsafe-inline\' \'unsafe-eval\' '.site_url().' https://www.googletagmanager.com https://www.google.com https://www.gstatic.com https://cdnjs.cloudflare.com https://www.youtube.com; connect-src \'self\' \'unsafe-inline\'  https://*.google-analytics.com https://*.mapbox.com; img-src \'self\' data: blob: https://secure.gravatar.com https://*.w.org https://library.elementor.com; style-src \'self\' \'unsafe-inline\' https://fonts.googleapis.com; worker-src \'self\' \'unsafe-inline\' blob:; font-src \'self\' data: https://fonts.gstatic.com; media-src \'self\' '.site_url().'; frame-src \'self\' https://www.google.com https://*.youtube.com;"',
-			'</IfModule>'
+			'Header set Content-Security-Policy "default-src \'none\'; script-src \'self\' \'unsafe-inline\' \'unsafe-eval\' '.trim(site_url(), '/').' https://www.googletagmanager.com https://www.google.com https://www.gstatic.com https://cdnjs.cloudflare.com https://*.youtube.com; connect-src \'self\' \'unsafe-inline\'  https://*.google-analytics.com https://*.mapbox.com; img-src \'self\' data: blob: https://secure.gravatar.com https://*.w.org https://library.elementor.com; style-src \'self\' \'unsafe-inline\' https://fonts.googleapis.com; worker-src \'self\' \'unsafe-inline\' blob:; font-src \'self\' data: https://fonts.gstatic.com; media-src \'self\' '.trim(site_url(), '/').'; frame-src \'self\' https://www.google.com https://*.youtube.com;"',
+			'</IfModule>',
+			'# End of CPS Security headers rules'
 		);
 
 		insert_with_markers(get_home_path().'.htaccess', 'WordPress', $content);
