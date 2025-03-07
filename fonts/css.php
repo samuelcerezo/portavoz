@@ -14,19 +14,9 @@ foreach (scandir(get_template_directory().'/fonts') as $family) {
 
 		foreach (scandir(get_template_directory().'/fonts/'.$family) as $variant) {
 
-			if (is_dir($variant)) {
-				continue;
-			}
-
 			if (!in_array($variant, array('.', '..'))) {
 
 				$ext = pathinfo($variant)['extension'];
-
-				if ($ext != 'woff2') {
-
-					unlink(get_template_directory().'/fonts/'.$family.'/'.$variant);
-
-				}
 
 				$italic = false;
 
@@ -47,11 +37,7 @@ foreach (scandir(get_template_directory().'/fonts') as $family) {
 
 }
 
-ob_start();
-
-?>
-@charset 'UTF-8';
-<?php
+$out = '';
 
 foreach ($fonts as $family => $variant) {
 
@@ -67,21 +53,33 @@ foreach ($fonts as $family => $variant) {
 
 		}
 
-?>
+		$out .= '@font-face {'."\n";
+		$out .= '	font-family: \''.$family.'\';'."\n";
+		$out .= '	font-display: swap;'."\n";
 
-@font-face {
-	font-family: '<?= $family ?>';
-	font-display: swap;
-	src: url('../fonts/<?= $family ?>/<?= $weight ?>.woff2') format('woff2');
-	font-weight: <?= $weight ?>;
-	font-style: <?= ($italic ? 'italic' : 'normal') ?>;
-}
-<?php
+		if (isset($variant['eot'])) {
+			$out .= '	src: url(\'../fonts/'.$family.'/'.$variant['eot'].'\');'."\n";
+		}
+
+		$i = 1;
+
+		foreach ($variant as $ext => $name) {
+
+			$out .= '	'.($i == 1 ? 'src:' : '	').' url(\'../fonts/'.$family.'/'.$name.($ext == 'eot' ? '?#iefix' : '').'\') format(\''.strtr($ext, array('eot' => 'embedded-opentype', 'ttf' => 'truetype')).'\')'.($i == count($variant) ? ';' : ',')."\n";
+
+			$i++;
+
+		}
+
+		$out .= '	font-weight: '.$weight.';'."\n";
+		$out .= '	font-style: '.($italic ? 'italic' : 'normal').';'."\n";
+		$out .= '}'."\n";
+		$out .= ''."\n";
 
 	}
 
 }
 
-echo ob_get_clean();
+echo $out;
 
 ?>
